@@ -1041,7 +1041,7 @@
         </geometry>
     </library_geometries>
     <library_materials>
-        <material id="ID9" name="_10031650_136888_330">
+        <material id="ID9" name="10031650_136888_330">
             <instance_effect url="#ID10" />
         </material>
         <material id="ID18" name="edge_color208202197255">
@@ -1115,7 +1115,7 @@
     </library_effects>
     <library_images>
         <image id="ID11">
-            <init_from>model/_10031650_136888_330.jpg</init_from>
+            <init_from>model/10031650_136888_330.jpg</init_from>
         </image>
     </library_images>
     <scene>

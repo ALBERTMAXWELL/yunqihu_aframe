@@ -1001,7 +1001,7 @@
         </geometry>
     </library_geometries>
     <library_materials>
-        <material id="ID4" name="__Translucent_Glass_Sky_Reflection_5">
+        <material id="ID4" name="Translucent_Glass_Sky_Reflection_5">
             <instance_effect url="#ID5" />
         </material>
         <material id="ID13" name="edge_color808080255">
@@ -1187,7 +1187,7 @@
     </library_effects>
     <library_images>
         <image id="ID6">
-            <init_from>model/__Translucent_Glass_Sky_Reflection_5.jpg</init_from>
+            <init_from>model/Translucent_Glass_Sky_Reflection_5.jpg</init_from>
         </image>
         <image id="ID38">
             <init_from>model/material_1.jpg</init_from>
