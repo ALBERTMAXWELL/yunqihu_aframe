@@ -4,14 +4,22 @@
     <meta charset="utf-8">
     <title>Shopping</title>
     <meta name="description" content="Shopping - A-Frame">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://aframe.io/releases/0.4.0/aframe.js"></script>
 
     <script src="https://unpkg.com/aframe-animation-component@^3.2.0/dist/aframe-animation-component.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^3.0.0/dist/aframe-event-set-component.min.js"></script>
+    <style type="text/css">
+      #loading {
+    position: absolute; width: 100%; height: 100%; background: url('img/Loading.gif') no-repeat center center;
+}
+    </style>
 
 </head>
   </head>
   <body>
+  <div id="loading"></div>
+
     <a-scene>
       <a-assets>
         <a-asset-item id="m1" src="models/bag1/model.dae"></a-asset-item>
@@ -24,18 +32,33 @@
         <img id="logo" src="img/logo.png">
         <img id="price" src="img/credit.png">
         <img id="shadow2" src="img/radial-shadow-2.png">
+        <img id="infoboard1" src="img/infoboard1.png">
+        <img id="infoboard2" src="img/infoboard2.png">
+        <img id="infoboard3" src="img/infoboard31.png">
+        <img id="infoboard4" src="img/infoboard4.png">
+        <img id="infoboard5" src="img/infoboard5.png">
+        <img id="buy" src="img/buy.png">
+
       </a-assets>
 
-      <script id="link" type="text/html">
-          <a-entity class="link"
-
-            event-set__1="_event: mousedown; scale: 1 1 1"
-            event-set__2="_event: mouseup; scale: 1.2 1.2 1"
-            event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
-            event-set__4="_event: mouseleave; scale: 1 1 1"
-            set-image="on: click; target: #image-360; src: ${src}"
-            sound="on: click; src: #click-sound"></a-entity>
-      </script>
+      <a-curvedimage id="mozvr-logo" src="#logo" radius="5.7" theta-length="36" height="1.2"
+                     position="0 2.95 -1" opacity="1">
+        <a-animation attribute="rotation" from="0 10 0" to="0 200 0" delay="500"
+                     dur="1000"></a-animation>
+        <a-animation attribute="opacity" to="0" delay="2500"
+                     dur="3000"></a-animation>
+      </a-curvedimage>
+<a-image id="price" src="#price" width="10" height="4" scale="0.2 0.2 0.2" rotation="0 -40 0">
+        <a-animation attribute="position" from="0 2.8 -6" to="3 2.8 -5" delay="1000"
+                     dur="1000"></a-animation>
+        <a-animation attribute="opacity" from="1" to="0" delay="2500"
+                     dur="3000"></a-animation>
+      </a-image>
+<a-entity>
+        <a-cylinder position="0 -4 0" radius="20" height="7.0" side="back" open-ended="true"
+                    color="white" opacity="0.4"></a-cylinder>
+      </a-entity>
+<a-sky src="img/s2.jpg" rotation="0 -90 0"></a-sky>
 
 
 
@@ -47,8 +70,12 @@
                        easing="linear" repeat="indefinite"></a-animation>
         
         
-
-        <a-entity id="m1" position="15.5 -5 -8" scale="8 8 8">
+      <a-entity id="M1" position="0 0 0">
+          <a-entity id="info1" visible="false">
+            <a-image  src="#infoboard1" position="0.2 3.35 -0.35" width="0.948" height="1.254" scale="0.2 0.2 0.2" rotation="0 -40 0" visible="true"></a-image>
+            <a-image  src="#buy" position="2.5 2.6 -0.3" width="3.8" height="3.8" scale="0.2 0.2 0.2" rotation="0 -90 0" visible="true"></a-image>
+          </a-entity>
+        <a-entity id="m1" position="15.5 -5 -8" scale="8 8 8"  event-set__1="_event: mouseenter; visible: true; _target: #info1" event-set__2="_event: mouseleave; visible: false; _target: #info1">
           <a-box  position="0 0.2 0" depth="0.3" height="0.50" width="0.5"  material="visible: false"></a-box>
           <a-collada-model position="-0.23 0 0.05" rotation="0 0 0" scale="1 1 1"
                            src="#m5"></a-collada-model>
@@ -60,9 +87,14 @@
           <a-animation begin="mouseenter" attribute="rotation" to="0 330 0" dur="15000"
                        easing="linear" repeat="indefinite"></a-animation>  
         </a-entity>
+    </a-entity>
 
-
-        <a-entity id="m2" position="9 -6 -15.5" scale="2.8 2.8 2.8">
+      <a-entity id="M2" position="0 0 0">
+          <a-entity id="info2" visible="false">
+            <a-image  src="#infoboard2" position="0 3.35 -0.35" width="0.948" height="1.254" scale="0.2 0.2 0.2" rotation="0 3 0" visible="true"></a-image>
+            <a-image  src="#buy" position="0.5 3.28 -0.3" width="0.7" height="0.7" scale="0.2 0.2 0.2" rotation="0 -50 0" visible="true"></a-image>
+          </a-entity>
+        <a-entity id="m2" position="9 -6 -15.5" scale="2.8 2.8 2.8" event-set__1="_event: mouseenter; visible: true; _target: #info2" event-set__2="_event: mouseleave; visible: false; _target: #info2">
           <a-collada-model position="-0.45 0 0" rotation="0 0 0" scale="1 1 1"
                            src="#m2"></a-collada-model>
           <a-box  position="0 0.8 0" depth="0.7" height="2.00" width="1.3"  material="visible: false"></a-box>
@@ -74,10 +106,16 @@
           <a-animation begin="mouseenter" attribute="rotation" to="0 330 0" dur="15000"
                        easing="linear" repeat="indefinite" ></a-animation>  
         </a-entity>
-        
+      </a-entity>
+
+
         <a-entity id="M3" position="0 0 0">
-          <a-box  id="bb" position="0 4 -18" depth="2.2" height="6" width="4.4" material="visible: false"></a-box>
-          <a-entity id="m3" position="0 -6 -18" event-set__1="_event: mouseenter; material.visible: true; _target: #bb" event-set__2="_event: mouseleave; material.visible: false; _target: #bb">
+          <a-entity id="info3" visible="false">
+            <a-image  src="#infoboard3" position="-0.2 3.35 -0.35" width="0.948" height="1.254" scale="0.2 0.2 0.2" rotation="0 20 0" visible="true"></a-image>
+            <a-image  src="#buy" position="0.15 3.37 -0.3" width="0.5" height="0.5" scale="0.2 0.2 0.2" rotation="0 -20 0" visible="true"></a-image>
+          </a-entity>
+          <!-- <a-box  id="bb" position="0 4 -18" depth="2.2" height="6" width="4.4" material="visible: false"></a-box> -->
+          <a-entity id="m3" position="0 -6 -18" event-set__1="_event: mouseenter; visible: true; _target: #info3" event-set__2="_event: mouseleave; visible: false; _target: #info3">
               <a-collada-model  position="-7.77 -0.46 0.26" rotation="0 0 0" scale="1 1 1"
                                src="#m3"></a-collada-model>
               <a-box  position="0 2.57 0" depth="2.2" height="6" width="4.4" material="visible: false"></a-box>
@@ -92,21 +130,31 @@
           </a-entity>
         </a-entity>
 
+      <a-entity id="M4" position="0 0 0">
+          <a-entity id="info4" visible="false">
+            <a-image  src="#infoboard4" position="-0.45 3.3 -0.3" width="0.948" height="1.254" scale="0.25 0.25 0.25" rotation="0 50 0" visible="true"></a-image>
+            <a-image  src="#buy" position="0.02 3.26 -0.6" width="1.5" height="1.5" scale="0.12 0.12 0.12" rotation="0 0 0" visible="true"></a-image>
+          </a-entity>
 
-        <a-entity id="m4" position="-9 -6 -15.5" scale="5 5 5" >
-          <a-collada-model position="-0.39 0 0" rotation="0 0 0" scale="1 1 1"
-                           src="#m4"></a-collada-model>
-          <a-box  position="0 0.5 0" depth="0.5" height="1" width="0.8"  material="visible: false"></a-box>
-          <a-animation begin="mouseenter" attribute="position" from="-9 -6 -15.5"
-                     to="-4.5 -3 -7.75" dur="1000" fill="both"></a-animation>
-          <a-animation begin="mouseleave" attribute="position" from="-4.5 -3 -7.75"
-                     to="-9 -6 -15.5" dur="1000" fill="both"></a-animation>
-          <a-animation begin="mouseenter" attribute="rotation" to="0 330 0" dur="15000"
-                       easing="linear" repeat="indefinite"></a-animation>  
-        </a-entity>
+          <a-entity id="m4" position="-9 -6 -15.5" scale="5 5 5" event-set__1="_event: mouseenter; visible: true; _target: #info4" event-set__2="_event: mouseleave; visible: false; _target: #info4">
+            <a-collada-model position="-0.39 0 0" rotation="0 0 0" scale="1 1 1"
+                             src="#m4"></a-collada-model>
+            <a-box  position="0 0.5 0" depth="0.5" height="1" width="0.8"  material="visible: false"></a-box>
+            <a-animation begin="mouseenter" attribute="position" from="-9 -6 -15.5"
+                       to="-4.5 -3 -7.75" dur="1000" fill="both"></a-animation>
+            <a-animation begin="mouseleave" attribute="position" from="-4.5 -3 -7.75"
+                       to="-9 -6 -15.5" dur="1000" fill="both"></a-animation>
+            <a-animation begin="mouseenter" attribute="rotation" to="0 330 0" dur="15000"
+                         easing="linear" repeat="indefinite"></a-animation>  
+          </a-entity>
+      </a-entity>
 
-
-        <a-entity id="m5" position="-15.5 -5 -8" scale="8 8 8">
+      <a-entity id="M5" position="0 0 0">
+          <a-entity id="info5" visible="false">
+            <a-image  src="#infoboard5" position="-2.2 2.6 0.2" width="0.948" height="1.254" scale="1.1 1.1 1.1" rotation="0 80 0" visible="true"></a-image>
+            <a-image  src="#buy" position="-2.1 2.2 -2.9" width="3.8" height="3.8" scale="0.3 0.3 0.3" rotation="0 30 0" visible="true"></a-image>
+          </a-entity>
+        <a-entity id="m5" position="-15.5 -5 -8" scale="8 8 8" event-set__1="_event: mouseenter; visible: true; _target: #info5" event-set__2="_event: mouseleave; visible: false; _target: #info5">
           <a-box  position="0 0.2 0" depth="0.3" height="0.50" width="0.5"  material="visible: false"></a-box>
           <a-collada-model position="-0.23 0 0.05" rotation="0 0 0" scale="1 1 1"
                            src="#m5"></a-collada-model>
@@ -119,27 +167,21 @@
         </a-entity>
 
       </a-entity>
+    </a-entity>
+
+      
+
+
+
+
+
+
+
 
 
       
 
-
-
-
-
-
-
-
-
       
-
-      <a-curvedimage id="mozvr-logo" src="#logo" radius="5.7" theta-length="36" height="1.2"
-                     position="0 2.95 -1" opacity="1">
-        <a-animation attribute="rotation" from="0 10 0" to="0 200 0" delay="500"
-                     dur="1000"></a-animation>
-        <a-animation attribute="opacity" to="0" delay="2500"
-                     dur="3000"></a-animation>
-      </a-curvedimage>
 
 
       <!-- <a-curvedimage id="credit" src="#price" radius="5.7" theta-length="36" height="0.8"
@@ -148,12 +190,7 @@
                      dur="1000"></a-animation>
       </a-curvedimage> -->
 
-      <a-image id="price" src="#price" width="10" height="4" scale="0.2 0.2 0.2" rotation="0 -40 0">
-        <a-animation attribute="position" from="0 2.8 -6" to="3 2.8 -5" delay="1000"
-                     dur="1000"></a-animation>
-        <a-animation attribute="opacity" from="1" to="0" delay="2500"
-                     dur="3000"></a-animation>
-      </a-image>
+      
 
       <!-- <a-cylinder id="goggles" color="#101010" height="0.02" radius="0.8">
         <a-animation attribute="rotation" from="-270 0 0" to="-90 0 0" dur="750" delay="1000"
@@ -167,10 +204,7 @@
 
       
 
-      <a-entity>
-        <a-cylinder position="0 -4 0" radius="20" height="7.0" side="back" open-ended="true"
-                    color="white" opacity="0.4"></a-cylinder>
-      </a-entity>
+      
 
       <!-- <a-camera position="0 0 0">
         <a-cursor color="#FF0000" />
@@ -178,7 +212,7 @@
       </a-camera> -->
 
       <a-entity position="0 3.5 0">
-        <a-entity camera look-controls wasd-controls>
+        <a-entity camera look-controls>
           <a-entity position="0 0 -1" 
                 geometry="primitive: ring; radiusOuter: 0.025;
                           radiusInner: 0.015;"
@@ -190,12 +224,15 @@
       </a-entity>
 
       <!-- <a-sky color="#ECECEC"></a-sky> -->
-      <a-sky src="img/s2.jpg" rotation="0 -90 0"></a-sky>
+      
       <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
       <a-light type="ambient" color="#fff"></a-light>
     </a-scene>
 
     <script>
+
+    $(window).ready(function() {
+    $('#loading').hide();});
             // var box = document.querySelector( '#models' );
             // var box1 = document.querySelector( '#m3' );
             // var bb=document.querySelector( '#bb' );
